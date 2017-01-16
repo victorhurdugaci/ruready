@@ -1,0 +1,17 @@
+language: go
+go:
+- 1.6
+script:
+- CGO_ENABLED=0 go build --ldflags "-extldflags \"-static\" -X main.meta_version=${TRAVIS_TAG:=0.0.0-dev}+${TRAVIS_BUILD_NUMBER}.${TRAVIS_COMMIT:0:7}"
+- sha1sum ruready > ruready.sha1
+deploy:
+  provider: releases
+  api_key:
+    secure: bhLRngAQ9CbHfn9TaGf+vBYfcjVbfxk9zb0tU1bAi0C+7oS53gRSP+Gdi5pIc5QCDgSBxOp66ez0uodFDvnyikRzG1JdXHOMdjtRPVWJcM+hd5g1qzKI9KU6sG89v9bnVW9yV2C7sKm6QwXW3iTg5M6yyA+1ZySoTIWEa9oAwK18x4rV9Ew78VQTpEeSuihhzsNiWgfMrpTb7v7+kbnGqLI1RqsuesMBuDPHPQAaQ+gWo5OilljEORcuRxH6bEQ/TPIL9F2+Yh5Eh4msBr33Uh8tyLqMVvg18q968kYUsXk21+4X1s2EFHsXD2dkydaliMGZQzNvf5TXpbjIZ4tVaMSrWp9JUHWyEREREJn1aiRYpvjhX84d54a4BZFYPlPzPux4QK4+Nek557/caqCzTd0aS6ketXrtT+k+PsErIAK4WjSikazFkCnzMzd/fS5J2kQ6C/WwttVRly3Nnn7EmrDM2X2LRm6ze7U3k9BCdYuPGhbeem3yfMhQVkgHA6xcx5OmBPruRK9/3o0w2k6LLxRmlcZdLcF3E6pyRlLKK8g+cqe0euBEaA8eSFOe7BPSq4M71YqDzP6yxemcS1NY0MpdgiKmg0Hfhpj4hcWekdncfWkEkn0c2EA8SvF3IO/ZGrn3Botd7LeBVZNWesUvjFLiIRhdwVyUEU8Vn0zhXrI=
+  file: 
+    - ruready
+    - ruready.sha1
+  skip_cleanup: true
+  on:
+    repo: victorhurdugaci/ruready
+    tags: true
