@@ -22,16 +22,17 @@ var opts struct {
 }
 
 var cmdArgs []string
-var cmdExecLock sync.Mutex
+var checkLock sync.Mutex
 var lastCheck time.Time = time.Time{}
 var isReady bool = false
 
 var meta_version string = "N/A"
 
 func checkIsReady() bool {
+    checkLock.Lock()
+    defer checkLock.Unlock()
+
     if !isReady {
-        cmdExecLock.Lock()
-        
         now := time.Now()
         secondsSinceLastCheck := int(now.Sub(lastCheck).Seconds())
         if secondsSinceLastCheck > opts.CacheTime {
@@ -39,8 +40,6 @@ func checkIsReady() bool {
             err := exec.Command(opts.Command, cmdArgs...).Run()
             isReady = err == nil
         }
-
-        cmdExecLock.Unlock()
     }
 
     return isReady
