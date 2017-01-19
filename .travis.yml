@@ -13,5 +13,4 @@ deploy:
     - ruready.sha1
   skip_cleanup: true
   on:
-    repo: victorhurdugaci/ruready
     tags: true
