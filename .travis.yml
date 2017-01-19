@@ -2,7 +2,7 @@ language: go
 go:
 - 1.6
 script:
-- CGO_ENABLED=0 go build --ldflags "-extldflags \"-static\" -X main.meta_version=${TRAVIS_TAG:=0.0.0-dev}+${TRAVIS_BUILD_NUMBER}.${TRAVIS_COMMIT:0:7}"
+- CGO_ENABLED=0 go build --ldflags "-extldflags \"-static\" -X main.meta_version=${TRAVIS_TAG:-0.0.0-dev}+${TRAVIS_BUILD_NUMBER}.${TRAVIS_COMMIT:0:7}"
 - sha1sum ruready > ruready.sha1
 deploy:
   provider: releases
@@ -13,4 +13,5 @@ deploy:
     - ruready.sha1
   skip_cleanup: true
   on:
+    repo: victorhurdugaci/ruready
     tags: true
