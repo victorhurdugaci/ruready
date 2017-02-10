@@ -35,13 +35,13 @@ Run `docker-compose up` in the folder where you created the file.
 
 ## Command line arguments
 
-| Argument          | Required | Default | Description                                                             |
-| ----------------- | -------- | ------- | ----------------------------------------------------------------------- |
-| `-c`/`--command`  | Yes      |         | The command that checks if the machine is ready                         |
-| `t`/`--cachetime` | No       | 3       | Number of seconds to cache the result of the command before  reinvoking |
-| `-p`/`--port`     | No       | 8099    | Server port                                                             |
-| `-v`/`--version`  | No       |         | Shows version information                                               |
-| `--`              | No       |         | Anything that follows `--` is passed as argument to `command`
+| Argument           | Required | Default | Description                                                             |
+| ------------------ | -------- | ------- | ----------------------------------------------------------------------- |
+| `-c`/`--command`   | Yes      |         | The command that checks if the machine is ready                         |
+| `-t`/`--cachetime` | No       | 3       | Number of seconds to cache the result of the command before  reinvoking |
+| `-p`/`--port`      | No       | 8099    | Server port                                                             |
+| `-v`/`--version`   | No       |         | Shows version information                                               |
+| `--`               | No       |         | Anything that follows `--` is passed as argument to `command`
 
 **Examples**
 
